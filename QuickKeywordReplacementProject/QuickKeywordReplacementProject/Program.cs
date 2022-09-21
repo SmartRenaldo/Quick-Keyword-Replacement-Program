@@ -13,8 +13,13 @@ namespace QuickKeywordReplacementProject
             string[] oldKeySet = { "level" };
             string[] newKeySet = { "device", "channel" };
             string s = ReplaceKeyWord(oldKeySet, newKeySet,
-                "public"
+                ""
                 );
+            s = ReplaceKeyWord("group", "device", s);
+
+            /*string s = ReplaceKeyWord("old", "new",
+                "for (int i = 0; i < oldKeySet.Length; i++)\r\n            {\r\n                if (!String.IsNullOrWhiteSpace(oldKeySet[i]))\r\n                {\r\n                    AllLowerOldKeyBuilder.Append(oldKeySet[i].ToLower());\r\n                    AllUpperOldKeyBuilder.Append(oldKeySet[i].ToUpper());\r\n                    CamelOldKeyBuilder.Append(oldKeySet[i].Substring(0, 1).ToUpper());\r\n\r\n                    if (oldKeySet[i].Length > 1)\r\n                    {\r\n                        CamelOldKeyBuilder.Append(oldKeySet[i].Substring(1).ToLower());\r\n                    }\r\n\r\n                    if (i < oldKeySet.Length - 1)\r\n                    {\r\n                        CamelOldKeyBuilder.Append(\"_\");\r\n                    }\r\n                }\r\n            }"
+                );*/
             Console.WriteLine(s);
 
             Console.ReadKey();
@@ -49,20 +54,46 @@ namespace QuickKeywordReplacementProject
             StringBuilder AllUpperNewKeyBuilder = new StringBuilder();
             StringBuilder CamelNewKeyBuilder = new StringBuilder();
 
-            foreach (string oldKey in oldKeySet)
+            for (int i = 0; i < oldKeySet.Length; i++)
             {
-                AllLowerOldKeyBuilder.Append(oldKey.ToLower());
-                AllUpperOldKeyBuilder.Append(oldKey.ToUpper());
-                CamelOldKeyBuilder.Append(oldKey.Substring(0, 1).ToUpper());
-                CamelOldKeyBuilder.Append(oldKey.Substring(1).ToLower());
+                if (!String.IsNullOrWhiteSpace(oldKeySet[i]))
+                {
+                    AllLowerOldKeyBuilder.Append(oldKeySet[i].ToLower());
+                    AllUpperOldKeyBuilder.Append(oldKeySet[i].ToUpper());
+
+                    if (i < oldKeySet.Length - 1)
+                    {
+                        AllUpperOldKeyBuilder.Append("_");
+                    }
+
+                    CamelOldKeyBuilder.Append(oldKeySet[i].Substring(0, 1).ToUpper());
+
+                    if (oldKeySet[i].Length > 1)
+                    {
+                        CamelOldKeyBuilder.Append(oldKeySet[i].Substring(1).ToLower());
+                    }
+                }
             }
 
-            foreach (string newKey in newKeySet)
+            for (int i = 0; i < newKeySet.Length; i++)
             {
-                AllLowerNewKeyBuilder.Append(newKey.ToLower());
-                AllUpperNewKeyBuilder.Append(newKey.ToUpper());
-                CamelNewKeyBuilder.Append(newKey.Substring(0, 1).ToUpper());
-                CamelNewKeyBuilder.Append(newKey.Substring(1).ToLower());
+                if (!String.IsNullOrWhiteSpace(newKeySet[i]))
+                {
+                    AllLowerNewKeyBuilder.Append(newKeySet[i].ToLower());
+                    AllUpperNewKeyBuilder.Append(newKeySet[i].ToUpper());
+
+                    if (i < newKeySet.Length - 1)
+                    {
+                        AllUpperNewKeyBuilder.Append("_");
+                    }
+
+                    CamelNewKeyBuilder.Append(newKeySet[i].Substring(0, 1).ToUpper());
+
+                    if (newKeySet[i].Length > 1)
+                    {
+                        CamelNewKeyBuilder.Append(newKeySet[i].Substring(1).ToLower());
+                    }
+                }
             }
 
             return s.Replace(AllLowerOldKeyBuilder.ToString(), AllLowerNewKeyBuilder.ToString())
