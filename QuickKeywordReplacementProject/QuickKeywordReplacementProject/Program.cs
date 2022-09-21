@@ -13,7 +13,7 @@ namespace QuickKeywordReplacementProject
             string[] oldKeySet = { "level" };
             string[] newKeySet = { "device", "channel" };
             string s = ReplaceKeyWord(oldKeySet, newKeySet,
-                ""
+                "public ReactiveCommand<Unit, Unit> CancelLevelAddMode { get; }"
                 );
             s = ReplaceKeyWord("group", "device", s);
 

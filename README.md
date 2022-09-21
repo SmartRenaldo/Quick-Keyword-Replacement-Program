@@ -2,7 +2,7 @@
 convert an old keyword's upper, lower, and camel cases into a new keyword's upper, lower, and camel cases
 
 Version 3: 
-    handle exceptions for strings that are null or white space, and handle exceptions for ll upper case keywords
+    handle exceptions for strings that are null or white space, and handle exceptions for all upper case keywords
     e.g. keyword upper case form "HELLOWORLD" --> "HELLO_WORLD"
 
 Version 2: 
